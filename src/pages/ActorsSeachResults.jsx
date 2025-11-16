@@ -57,7 +57,7 @@ function ActorsSeachResults() {
           </div>
         </>
       ) : (
-        <div>No Movie Found</div>
+        <div>No actor Found</div>
       )}
     </div>
   );

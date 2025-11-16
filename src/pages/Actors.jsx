@@ -33,6 +33,7 @@ function Actors({ setMovies, storedMovies }) {
   }
   return (
     <div className="w-full text-white min-h-screen bg-zinc-800">
+      <title>Actors</title>
       <NavBar />
       <ActorSearch />
       <h1 className="my-7 font-bold text-3xl ml-3">Famous Actors</h1>

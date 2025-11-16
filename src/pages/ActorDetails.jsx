@@ -42,6 +42,7 @@ export default function ActorDetails() {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-6 md:p-10">
+      <title>{details.name}</title>
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10">
 
         <div className="w-full md:w-1/3">

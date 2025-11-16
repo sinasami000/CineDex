@@ -48,7 +48,7 @@ function Home({ storedMovies, setMovies }) {
   }
   return (
     <div className="bg-zinc-800 min-h-screen text-white">
-      <title>Home</title>
+      <title>CineDex || Home</title>
       <NavBar />
       <SearchBox />
       <h1 className="text-3xl font-bold mb-3">Trending Movies</h1>
