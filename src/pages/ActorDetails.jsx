@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import LoadingAnimation from "../components/LoadingAnimation";
 
 export default function ActorDetails() {
   const { actor_id } = useParams();
@@ -22,9 +23,7 @@ export default function ActorDetails() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen text-white text-xl">
-        Loading actor details...
-      </div>
+      <LoadingAnimation />
     );
   }
 

@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ActorCard from "../components/ActorCard";
+import LoadingAnimation from "../components/LoadingAnimation";
 
 function ActorsSeachResults() {
   const API_KEY = "d57381ec58bf6bd7bf0af593e71fc800";
@@ -24,9 +25,7 @@ function ActorsSeachResults() {
   console.log(results);
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-zinc-900 text-zinc-300">
-        Loading...
-      </div>
+      <LoadingAnimation />
     );
   }
   return (

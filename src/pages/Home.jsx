@@ -4,17 +4,17 @@ import NavBar from "../components/NavBar";
 import SearchBox from "../components/SearchBox";
 import MovieCard from "../components/MovieCard";
 import axios from "axios";
+import LoadingAnimation from "../components/LoadingAnimation";
 function Home({ storedMovies, setMovies }) {
   const [trendingPageCount, setTrendingPageCount] = useState(1);
   const [regularPageCount, setRegularPageCount] = useState(1);
   const [trending, setTrending] = useState([]);
   const [popular, setPopular] = useState([]);
-  const [trendingLoading, setTrendingLoading] = useState(false);
-  const [regularLoading, setReqularLoading] = useState(false);
+  const [trendingLoading, setTrendingLoading] = useState(true);
+  const [regularLoading, setReqularLoading] = useState(true);
   const API_KEY = "d57381ec58bf6bd7bf0af593e71fc800";
   const URL = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`;
   useEffect(() => {
-    setTrendingLoading(true);
     axios
       .get(
         `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}&&page=${trendingPageCount}`
@@ -28,7 +28,6 @@ function Home({ storedMovies, setMovies }) {
       });
   }, [trendingPageCount]);
   useEffect(() => {
-    setReqularLoading(true);
     axios
       .get(
         `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${regularPageCount}`
@@ -39,11 +38,7 @@ function Home({ storedMovies, setMovies }) {
       });
   }, [regularPageCount]);
   if (regularLoading || trendingLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-zinc-900 text-zinc-300">
-        Loading...
-      </div>
-    );
+    return <LoadingAnimation />;
   }
   function moreTrendingButton() {
     setTrendingPageCount(trendingPageCount + 1);

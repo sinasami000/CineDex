@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import LoadingAnimation from "../components/LoadingAnimation";
 
 function MovieDetails() {
     const [loading,setLoading] = useState(true)
@@ -25,9 +26,7 @@ function MovieDetails() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-zinc-900 text-zinc-300">
-                Loading...
-            </div>
+            <LoadingAnimation />
         );
     }
 

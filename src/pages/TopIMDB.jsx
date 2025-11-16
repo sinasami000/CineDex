@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import SearchBox from "../components/SearchBox";
 import MovieCard from "../components/MovieCard";
+import LoadingAnimation from "../components/LoadingAnimation";
 function TopIMDB({ storedMovies, setMovies }) {
   const [movies, setTopMovies] = useState([]);
   const API_KEY = "d57381ec58bf6bd7bf0af593e71fc800";
@@ -12,13 +13,9 @@ function TopIMDB({ storedMovies, setMovies }) {
       .then((r) => r.json())
       .then((d) => setTopMovies(d.results));
   }, []);
-  if (!movies.length>0) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-zinc-900 text-zinc-300">
-                Loading...
-            </div>
-        );
-    }
+  if (!movies.length > 0) {
+    return <LoadingAnimation />;
+  }
   return (
     <div className="bg-zinc-800 w-full">
       <NavBar />

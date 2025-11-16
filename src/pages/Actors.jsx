@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import axios from "axios";
 import ActorCard from "../components/ActorCard";
 import ActorSearch from "../components/ActorSearch";
+import LoadingAnimation from "../components/LoadingAnimation";
 
 
 function Actors({ setMovies, storedMovies }) {
@@ -27,9 +28,7 @@ function Actors({ setMovies, storedMovies }) {
   console.log(actors);
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-zinc-900 text-zinc-300">
-        Loading...
-      </div>
+      <LoadingAnimation />
     );
   }
   return (

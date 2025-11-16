@@ -4,10 +4,11 @@ import axios from "axios";
 import NavBar from "../components/NavBar";
 import SearchBox from "../components/SearchBox";
 import MovieCard from "../components/MovieCard";
+import LoadingAnimation from "../components/LoadingAnimation";
 
 function SearchPage({ storedMovies, setMovies }) {
   const { movie_name } = useParams();
-  const [loading,setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
   useEffect(() => {
     axios
@@ -21,14 +22,9 @@ function SearchPage({ storedMovies, setMovies }) {
         setLoading(false);
       });
   }, []);
-  // console.log(results);
   if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-zinc-900 text-zinc-300">
-                Loading...
-            </div>
-        );
-    }
+    return <LoadingAnimation />;
+  }
   return (
     <div className="w-full text-white min-h-screen bg-zinc-800">
       <NavBar />
@@ -41,13 +37,15 @@ function SearchPage({ storedMovies, setMovies }) {
             {results.length > 0 ? (
               results.map((movie) => (
                 <MovieCard
-                 storedMovies={storedMovies} 
-                 setMovies={setMovies} 
+                  storedMovies={storedMovies}
+                  setMovies={setMovies}
                   key={movie.id}
                   id={movie.id}
                   movie={movie}
                   movie_name={movie.original_title || movie.name}
-                  poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path || movie.backdrop_path}`}
+                  poster_url={`https://image.tmdb.org/t/p/w500/${
+                    movie.poster_path || movie.backdrop_path
+                  }`}
                   release_date={movie.release_date || movie.first_air_date}
                   genre_ids={movie.genre_ids}
                   vote_average={movie.vote_average}
