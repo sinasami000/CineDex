@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function MovieDetails() {
-    const [movieDetails, setMovieDetails] = useState(null);
+    const [loading,setLoading] = useState(true)
+    const [movieDetails, setMovieDetails] = useState([]);
     const { media_type, movie_id } = useParams();
     const API_KEY = "d57381ec58bf6bd7bf0af593e71fc800";
 
@@ -13,6 +14,7 @@ function MovieDetails() {
             .get(`https://api.themoviedb.org/3/${media_type}/${movie_id}?api_key=${API_KEY}`)
             .then((res) => setMovieDetails(res.data))
             .catch(() => setMovieDetails(null));
+            setLoading(false)
     }, [media_type, movie_id]);
 
     const imgBase = (path, size = "w500") =>
@@ -21,7 +23,7 @@ function MovieDetails() {
     const formatCurrency = (num) =>
         typeof num === "number" ? num.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }) : "—";
 
-    if (!movieDetails) {
+    if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-zinc-900 text-zinc-300">
                 Loading...

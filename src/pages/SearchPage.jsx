@@ -7,7 +7,8 @@ import MovieCard from "../components/MovieCard";
 
 function SearchPage({ storedMovies, setMovies }) {
   const { movie_name } = useParams();
-  const [results, setResults] = useState(null);
+  const [loading,setLoading] = useState(true);
+  const [results, setResults] = useState([]);
   useEffect(() => {
     axios
       .get(
@@ -17,10 +18,11 @@ function SearchPage({ storedMovies, setMovies }) {
         setResults(
           res.data.results.filter((each) => each.media_type !== "person")
         );
+        setLoading(false);
       });
   }, []);
   // console.log(results);
-  if (!results) {
+  if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-zinc-900 text-zinc-300">
                 Loading...
