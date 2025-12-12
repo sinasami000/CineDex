@@ -8,18 +8,17 @@ function MovieCard({
   storedMovies = [],
   poster_url,
   fvt = false,
-  movie,
   id,
   movie_name,
   release_date,
-  type = "movie", // use lowercase if you also construct routes like /movie/:id
+  type = "movie", 
   vote_average,
   genre_ids = [],
 }) {
   const navigate = useNavigate();
 
-  const [favourite, setFavourite] = useState(() =>
-    fvt || storedMovies.some((m) => m.id === id)
+  const [favourite, setFavourite] = useState(
+    () => fvt || storedMovies.some((m) => m.id === id)
   );
 
   useEffect(() => {

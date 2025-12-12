@@ -5,6 +5,7 @@ import SearchBox from "../components/SearchBox";
 import MovieCard from "../components/MovieCard";
 import axios from "axios";
 import LoadingAnimation from "../components/LoadingAnimation";
+import CustomCarousel from "../components/CustomCarousel";
 function Home({ storedMovies, setMovies }) {
   const [trendingPageCount, setTrendingPageCount] = useState(1);
   const [regularPageCount, setRegularPageCount] = useState(1);
@@ -52,80 +53,80 @@ function Home({ storedMovies, setMovies }) {
       <NavBar />
       <SearchBox />
       <div className="container">
-         <h1 className="text-3xl font-bold mb-3">Trending Movies</h1>
-      <div className="trending-movies grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3">
-        {trending.length > 0 ? (
-          trending.map((movie, index) => (
-            <MovieCard
-              setMovies={setMovies}
-              storedMovies={storedMovies}
-              key={index}
-              movie={movie}
-              id={movie.id}
-              movie_name={
-                movie.original_title ||
-                movie.name ||
-                movie.original_name ||
-                movie.title
-              }
-              poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              release_date={movie.release_date || movie.first_air_date || ""}
-              genre_ids={movie.genre_ids}
-              type={movie.media_type || "Movie"}
-              vote_average={movie.vote_average}
-            />
-          ))
-        ) : (
-          <div>No movies to show</div>
-        )}
+        <CustomCarousel trending={trending} />
+        <h1 className="text-3xl font-bold mb-3">Trending Movies</h1>
+        <div className="trending-movies grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3">
+          {trending.length > 0 ? (
+            trending.map((movie, index) => (
+              <MovieCard
+                setMovies={setMovies}
+                storedMovies={storedMovies}
+                key={index}
+                movie={movie}
+                id={movie.id}
+                movie_name={
+                  movie.original_title ||
+                  movie.name ||
+                  movie.original_name ||
+                  movie.title
+                }
+                poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                release_date={movie.release_date || movie.first_air_date || ""}
+                genre_ids={movie.genre_ids}
+                type={movie.media_type || "Movie"}
+                vote_average={movie.vote_average}
+              />
+            ))
+          ) : (
+            <div>No movies to show</div>
+          )}
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <button
+            disabled={!trendingPageCount > 20}
+            onClick={moreTrendingButton}
+            className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold cursor-pointer rounded-lg transition duration-200"
+          >
+            Show More
+          </button>
+        </div>
+        <h1 className="text-3xl font-bold mb-3 mt-3">Regular Movies</h1>
+        <div className="regular-movies grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3">
+          {popular.length > 0 ? (
+            popular.map((movie, index) => (
+              <MovieCard
+                setMovies={setMovies}
+                storedMovies={storedMovies}
+                key={index}
+                id={movie.id}
+                movie={movie}
+                movie_name={
+                  movie.original_title ||
+                  movie.name ||
+                  movie.original_name ||
+                  movie.title
+                }
+                poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                release_date={movie.release_date || movie.first_air_date || ""}
+                genre_ids={movie.genre_ids}
+                type={movie.media_type || "Movie"}
+                vote_average={movie.vote_average}
+              />
+            ))
+          ) : (
+            <div>No movies to show</div>
+          )}
+        </div>
+        <div className="w-full flex justify-center items-center">
+          <button
+            disabled={!regularPageCount > 20}
+            onClick={moreRegularMovieButton}
+            className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold cursor-pointer rounded-lg transition duration-200"
+          >
+            Show More
+          </button>
+        </div>
       </div>
-      <div className="w-full flex justify-center items-center">
-        <button
-          disabled={!trendingPageCount > 20}
-          onClick={moreTrendingButton}
-          className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold cursor-pointer rounded-lg transition duration-200"
-        >
-          Show More
-        </button>
-      </div>
-      <h1 className="text-3xl font-bold mb-3 mt-3">Regular Movies</h1>
-      <div className="regular-movies grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3">
-        {popular.length > 0 ? (
-          popular.map((movie, index) => (
-            <MovieCard
-              setMovies={setMovies}
-              storedMovies={storedMovies}
-              key={index}
-              id={movie.id}
-              movie={movie}
-              movie_name={
-                movie.original_title ||
-                movie.name ||
-                movie.original_name ||
-                movie.title
-              }
-              poster_url={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              release_date={movie.release_date || movie.first_air_date || ""}
-              genre_ids={movie.genre_ids}
-              type={movie.media_type || "Movie"}
-              vote_average={movie.vote_average}
-            />
-          ))
-        ) : (
-          <div>No movies to show</div>
-        )}
-      </div>
-      <div className="w-full flex justify-center items-center">
-        <button
-          disabled={!regularPageCount > 20}
-          onClick={moreRegularMovieButton}
-          className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold cursor-pointer rounded-lg transition duration-200"
-        >
-          Show More
-        </button>
-      </div>
-      </div>
-     
     </div>
   );
 }
