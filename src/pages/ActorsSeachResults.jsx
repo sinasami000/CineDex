@@ -24,41 +24,41 @@ function ActorsSeachResults() {
   }, []);
   console.log(results);
   if (loading) {
-    return (
-      <LoadingAnimation />
-    );
+    return <LoadingAnimation />;
   }
   return (
     <div className="w-full text-white min-h-screen bg-zinc-800">
       <NavBar />
       <ActorSearch />
-      <h1 className="text-indigo-400">Seach Results for "{actorName}"</h1>
-      {results && results.length > 0 ? (
-        <>
-          <h1 className="text-indigo-400">Results: {results.length}</h1>
-          <div className="search-movies grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3">
-            {results.length > 0 ? (
-              results.map((actor, index) => (
-                <ActorCard
-                  key={index}
-                  name={actor.name}
-                  id={actor.id}
-                  profile_path={actor.profile_path}
-                  known_for={actor.known_for}
-                  original_name={actor.original_name}
-                  gender={actor.gender}
-                  popularity={actor.popularity}
-                  known_for_department={actor.known_for_department}
-                />
-              ))
-            ) : (
-              <div>No movies to show</div>
-            )}
-          </div>
-        </>
-      ) : (
-        <div>No actor Found</div>
-      )}
+      <div className="container">
+        <h1 className="text-indigo-400">Seach Results for "{actorName}"</h1>
+        {results && results.length > 0 ? (
+          <>
+            <h1 className="text-indigo-400">Results: {results.length}</h1>
+            <div className="search-movies grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3">
+              {results.length > 0 ? (
+                results.map((actor, index) => (
+                  <ActorCard
+                    key={index}
+                    name={actor.name}
+                    id={actor.id}
+                    profile_path={actor.profile_path}
+                    known_for={actor.known_for}
+                    original_name={actor.original_name}
+                    gender={actor.gender}
+                    popularity={actor.popularity}
+                    known_for_department={actor.known_for_department}
+                  />
+                ))
+              ) : (
+                <div>No movies to show</div>
+              )}
+            </div>
+          </>
+        ) : (
+          <div>No actor Found</div>
+        )}
+      </div>
     </div>
   );
 }

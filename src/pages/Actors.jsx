@@ -36,7 +36,8 @@ function Actors({ setMovies, storedMovies }) {
       <title>Actors</title>
       <NavBar />
       <ActorSearch />
-      <h1 className="my-7 font-bold text-3xl ml-3">Famous Actors</h1>
+      <div className="container">
+        <h1 className="my-7 font-bold text-3xl ml-3">Famous Actors</h1>
       <div className="actors grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3">
         {actors.length > 0 &&
           actors.map((actor,index) => (
@@ -62,6 +63,7 @@ function Actors({ setMovies, storedMovies }) {
         >
           Show More
         </button>
+      </div>
       </div>
     </div>
   );

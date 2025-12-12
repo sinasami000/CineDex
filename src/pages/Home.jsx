@@ -51,7 +51,8 @@ function Home({ storedMovies, setMovies }) {
       <title>CineDex || Home</title>
       <NavBar />
       <SearchBox />
-      <h1 className="text-3xl font-bold mb-3">Trending Movies</h1>
+      <div className="container">
+         <h1 className="text-3xl font-bold mb-3">Trending Movies</h1>
       <div className="trending-movies grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3">
         {trending.length > 0 ? (
           trending.map((movie, index) => (
@@ -123,6 +124,8 @@ function Home({ storedMovies, setMovies }) {
           Show More
         </button>
       </div>
+      </div>
+     
     </div>
   );
 }

@@ -20,7 +20,7 @@ function TopIMDB({ storedMovies, setMovies }) {
     <div className="bg-zinc-800 w-full">
       <NavBar />
       <SearchBox />
-      <div className="movies-movies grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3">
+      <div className="movies-movies container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3">
         {movies.length > 0 &&
           movies.map((movie) => (
             <MovieCard
